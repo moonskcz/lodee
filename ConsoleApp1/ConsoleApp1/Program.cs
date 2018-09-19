@@ -10,8 +10,14 @@ namespace ConsoleApp1
     {
         static void Main(string[] args)
         {
+            
+            Ship shipA = new Ship();
 
+            ArrayHandler arrHand = new ArrayHandler();
 
+            List<List<Cell>> Field = arrHand.CreateArray(15);
+
+            Console.WriteLine(arrHand.RenderArray(Field));
 
         }
     }
