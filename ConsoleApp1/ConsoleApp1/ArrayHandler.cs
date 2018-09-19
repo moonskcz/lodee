@@ -36,11 +36,7 @@ namespace ConsoleApp1
         public string GetCellState (Cell cell)
         {
 
-
-            switch (cell.State)
-            {
-                case 1
-            }
+            return "";
 
         }
 

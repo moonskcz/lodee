@@ -12,7 +12,9 @@ namespace ConsoleApp1
         public int X;
         public int Y;
 
-        public enum State {empty, emptyHit, ship, shipHit};
+        public enum States {empty, emptyHit, ship, shipHit};
+
+        public int State = 0;
 
         public Ship Ship;
 

@@ -8,12 +8,17 @@ namespace ConsoleApp1
 {
     class Ship
     {
-
-        Random rnd = new Random();
         
         public int ShipLives = 0;
 
         public string name = "name";
+
+        List<List<int>> Shape;
+
+        public void SetShipShape (List<List<int>> shape)
+        {
+            this.Shape = shape;
+        }
 
     }
 }
