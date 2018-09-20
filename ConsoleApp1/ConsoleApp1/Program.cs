@@ -15,7 +15,20 @@ namespace ConsoleApp1
 
             ArrayHandler arrHand = new ArrayHandler();
 
-            List<List<Cell>> Field = arrHand.CreateArray(15);
+            List<List<Cell>> Field = arrHand.CreateArray(10);
+
+            arrHand.KillCell(Field, 5, 4);
+            arrHand.KillCell(Field, 8, 4);
+            arrHand.KillCell(Field, 7, 2);
+            arrHand.KillCell(Field, 1, 4);
+            arrHand.KillCell(Field, 3, 4);
+            arrHand.KillCell(Field, 5, 2);
+            arrHand.KillCell(Field, 5, 5);
+            arrHand.KillCell(Field, 5, 4);
+            arrHand.KillCell(Field, 2, 7);
+            arrHand.KillCell(Field, 3, 0);
+            arrHand.KillCell(Field, 1, 8);
+            arrHand.KillCell(Field, 6, 9);
 
             Console.WriteLine(arrHand.RenderArray(Field));
 

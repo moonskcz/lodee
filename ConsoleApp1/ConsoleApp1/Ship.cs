@@ -11,7 +11,10 @@ namespace ConsoleApp1
         
         public int ShipLives = 0;
 
-        public string name = "name";
+        public string Type = "sub";
+
+        public int X = 0;
+        public int Y = 0;
 
         List<List<int>> Shape;
 

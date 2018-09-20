@@ -16,13 +16,26 @@ namespace ConsoleApp1
 
         public int State = 0;
 
-        public Ship Ship;
+        private Ship ship;
 
         public Cell (Ship inpId, int x, int y)
         {
-            this.Ship = inpId;
+            this.ship = inpId;
             this.X = x;
             this.Y = y;
+        }
+        
+        public void Kill ()
+        {
+
+            if (ship == null && State == 0)
+            {
+                State = 1;
+            } else if (ship != null && State == 2)
+            {
+                State = 3;
+            }
+
         }
 
     }
