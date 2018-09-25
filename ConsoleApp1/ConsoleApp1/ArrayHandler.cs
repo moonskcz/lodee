@@ -174,9 +174,9 @@ namespace ConsoleApp1
         public bool AddShip (Ship inpShip, List<List<Cell>> inpField, int inpX, int inpY)
         {
             bool add = true;
-            for (int x = inpX - 1; x <= inpShip.Height + inpX + 1; x++)
+            for (int x = inpX; x <= inpShip.Height + inpX; x++)
             {
-                for (int y = inpY - 1; y <= inpShip.Width + inpY + 1; y++)
+                for (int y = inpY; y <= inpShip.Width + inpY; y++)
                 {
                     foreach (Cell smallCell in inpShip.Shape)
                     {
