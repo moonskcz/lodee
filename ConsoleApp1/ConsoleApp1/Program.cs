@@ -11,7 +11,7 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             
-            Ship shipA = new Ship("landBase");
+            Ship shipA = new Ship("hydro");
 
             ArrayHandler arrHand = new ArrayHandler();
 

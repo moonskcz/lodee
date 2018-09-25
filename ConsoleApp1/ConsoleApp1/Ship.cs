@@ -16,6 +16,9 @@ namespace ConsoleApp1
         public int X = 0;
         public int Y = 0;
 
+        public int Width = 1;
+        public int Height = 1;
+
         public List<Cell> Shape = new List<Cell>();
 
         ShipHandler SH = new ShipHandler();
@@ -23,7 +26,7 @@ namespace ConsoleApp1
         public Ship (string inpType)
         {
             Type = inpType;
-             SH.CreateShipShape(this);
+            SH.CreateShipShape(this);
         }
 
     }

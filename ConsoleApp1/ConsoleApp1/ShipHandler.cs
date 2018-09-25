@@ -52,7 +52,12 @@ namespace ConsoleApp1
                     retShip.Add(new Cell(inpShip, 2, 1));
                     break;
                 case "hydro":
-
+                    retShip.Add(new Cell(inpShip, 0, 1));
+                    retShip.Add(new Cell(inpShip, 1, 0));
+                    retShip.Add(new Cell(inpShip, 1, 2));
+                    inpShip.Height = 2;
+                    inpShip.Width = 3;
+                    break;
                 case "cruiserII":
 
                 case "heavyCruiser":

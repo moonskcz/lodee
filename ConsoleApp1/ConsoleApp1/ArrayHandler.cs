@@ -114,11 +114,11 @@ namespace ConsoleApp1
                 } else if (nav.Key == ConsoleKey.RightArrow)
                 {
                     Console.WriteLine("right");
-                    if (posY < Array.Count() - 1) posY++;
+                    if (posY < Array.Count() - inpShip.Width) posY++;
                 } else if (nav.Key == ConsoleKey.DownArrow)
                 {
                     Console.WriteLine("down");
-                    if (posX < Array.Count() - 1) posX++;
+                    if (posX < Array.Count() - inpShip.Height) posX++;
                 }
 
                 Console.WriteLine($"{posX.ToString()}{posY.ToString()}");
@@ -135,10 +135,10 @@ namespace ConsoleApp1
 
                         foreach (Cell smallCell in inpShip.Shape)
                         {
-
+                            if ((posX + smallCell.X == currX) && (posY + smallCell.Y == currY)) shipHere = true;
                         }
 
-                        if ((posX == currX && posY == currY) || (shipHere))
+                        if (shipHere)
                         {
                             Console.BackgroundColor = ConsoleColor.Green;
                         }
