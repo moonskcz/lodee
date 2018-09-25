@@ -16,7 +16,7 @@ namespace ConsoleApp1
             ArrayHandler arrHand = new ArrayHandler();
 
             List<List<Cell>> Field = arrHand.CreateArray(10);
-
+            /*
             arrHand.KillCell(Field, 5, 4);
             arrHand.KillCell(Field, 8, 4);
             arrHand.KillCell(Field, 7, 2);
@@ -29,7 +29,7 @@ namespace ConsoleApp1
             arrHand.KillCell(Field, 3, 0);
             arrHand.KillCell(Field, 1, 8);
             arrHand.KillCell(Field, 6, 9);
-
+            */
             arrHand.RenderArray(Field, shipA);
 
         }

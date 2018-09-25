@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
+using System.Diagnostics;
+using System.ComponentModel;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -87,7 +90,6 @@ namespace ConsoleApp1
         {
 
             bool placeBool = true;
-            string ret = "";
 
             int posX = 0;
             int posY = 0;
@@ -96,32 +98,9 @@ namespace ConsoleApp1
             while (placeBool)
             {
 
-                ret = "";
-
-                
-                ConsoleKeyInfo nav = Console.ReadKey();
-
                 Console.Clear();
 
-                if (nav.Key == ConsoleKey.UpArrow)
-                {
-                    Console.WriteLine("up");
-                    if (posX > 0) posX--;
-                } else if (nav.Key == ConsoleKey.LeftArrow)
-                {
-                    Console.WriteLine("left");
-                    if (posY > 0) posY--;
-                } else if (nav.Key == ConsoleKey.RightArrow)
-                {
-                    Console.WriteLine("right");
-                    if (posY < Array.Count() - inpShip.Width) posY++;
-                } else if (nav.Key == ConsoleKey.DownArrow)
-                {
-                    Console.WriteLine("down");
-                    if (posX < Array.Count() - inpShip.Height) posX++;
-                }
-
-                Console.WriteLine($"{posX.ToString()}{posY.ToString()}");
+                
 
                 int currX = 0;
 
@@ -141,6 +120,7 @@ namespace ConsoleApp1
                         if (shipHere)
                         {
                             Console.BackgroundColor = ConsoleColor.Green;
+                            Console.ForegroundColor = ConsoleColor.Blue;
                         }
 
                         Console.Write("|" + GetCellState(cell));
@@ -155,7 +135,34 @@ namespace ConsoleApp1
 
                 }
 
-                Console.WriteLine(ret);
+                Console.WriteLine($"{posX.ToString()}{posY.ToString()}");
+
+                ConsoleKeyInfo nav = Console.ReadKey();
+
+                if (nav.Key == ConsoleKey.UpArrow)
+                {
+                    Console.WriteLine("up");
+                    if (posX > 0) posX--;
+                }
+                else if (nav.Key == ConsoleKey.LeftArrow)
+                {
+                    Console.WriteLine("left");
+                    if (posY > 0) posY--;
+                }
+                else if (nav.Key == ConsoleKey.RightArrow)
+                {
+                    Console.WriteLine("right");
+                    if (posY < Array.Count() - inpShip.Width) posY++;
+                }
+                else if (nav.Key == ConsoleKey.DownArrow)
+                {
+                    Console.WriteLine("down");
+                    if (posX < Array.Count() - inpShip.Height) posX++;
+                }
+                else if (nav.Key == ConsoleKey.Spacebar)
+                {
+                    AddShip(inpShip, Array, posX, posY);
+                }
 
             }
 
@@ -168,10 +175,44 @@ namespace ConsoleApp1
 
         }
 
-        /*public List<List<Cell>> AddShip ()
+        public void AddShip (Ship inpShip, List<List<Cell>> inpField, int inpX, int inpY)
         {
-            return;
-        }*/
+
+            for (int x = 0; x <= inpShip.Width; x++)
+            {
+
+                for (int y = 0; y <= inpShip.Height; y++)
+                {
+                    foreach (Cell smallCell in inpShip.Shape)
+                    {
+                        if (smallCell.X + inpX == x && smallCell.Y + inpY == y)
+                        {
+                            inpField[x + inpX][y + inpY] = smallCell;
+
+                            ProcessStartInfo psi = new ProcessStartInfo("cmd.exe")
+                            {
+                                RedirectStandardError = true,
+                                RedirectStandardInput = true,
+                                RedirectStandardOutput = true,
+                                UseShellExecute = false
+                            };
+
+                            Process p = Process.Start(psi);
+
+                            StreamWriter sw = p.StandardInput;
+                            StreamReader sr = p.StandardOutput;
+
+                            sw.WriteLine($"{x + inpX}{y + inpY}");
+                            //sr.Close();
+
+
+                        }
+                    }
+                }
+
+            }
+
+        }
 
     }
 }

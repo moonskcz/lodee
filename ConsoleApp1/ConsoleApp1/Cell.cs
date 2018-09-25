@@ -18,11 +18,13 @@ namespace ConsoleApp1
 
         private Ship ship;
 
-        public Cell (Ship inpId, int x, int y)
+        public Cell (Ship inpShip, int x, int y)
         {
-            this.ship = inpId;
-            this.X = x;
-            this.Y = y;
+            ship = inpShip;
+            X = x;
+            Y = y;
+
+            if (inpShip != null) State = 2;
         }
         
         public void Kill ()
