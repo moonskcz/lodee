@@ -50,7 +50,7 @@ namespace ConsoleApp1
                     retShip.Add(new Cell(inpShip, 0, 2));
                     retShip.Add(new Cell(inpShip, 0, 3));
                     retShip.Add(new Cell(inpShip, 0, 4));
-                    inpShip.Height = 0;
+                    inpShip.Height = 1;
                     inpShip.Width = 5;
                     break;
                 case "landBase":
@@ -119,6 +119,8 @@ namespace ConsoleApp1
                 default:
                     break;
             }
+
+            inpShip.ShipLives = retShip.Count;
 
             inpShip.Shape = retShip;
             

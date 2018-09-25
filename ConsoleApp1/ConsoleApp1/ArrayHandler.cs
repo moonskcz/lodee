@@ -48,41 +48,41 @@ namespace ConsoleApp1
             }
         }
 
-        public string RenderArray(List<List<Cell>> Array)
+        public void RenderArray(List<List<Cell>> Array)
         {
 
-            string ret = "";
-
-            for (int x = 0; x < Array.Count; x++)
-            {
-                ret += "--";
-            }
-
-            ret += @"-
-";
-
+            Console.Clear();
+            
             foreach (List<Cell> LCell in Array)
             {
 
                 foreach (Cell cell in LCell)
                 {
-                    ret += "|" + GetCellState(cell);
+                    if (GetCellState(cell) == "S")
+                    {
+                        Console.BackgroundColor = ConsoleColor.Gray;
+                        Console.ForegroundColor = ConsoleColor.Gray;
+                    } else if (GetCellState(cell) == "H")
+                    {
+                        Console.BackgroundColor = ConsoleColor.Red;
+                        Console.ForegroundColor = ConsoleColor.Red;
+                    } else if (GetCellState(cell) == " ")
+                    {
+                        Console.BackgroundColor = ConsoleColor.Blue;
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                    } else if (GetCellState(cell) == "X")
+                    {
+                        Console.BackgroundColor = ConsoleColor.Magenta;
+                        Console.ForegroundColor = ConsoleColor.Magenta;
+                    }
+                    Console.Write ("|" + GetCellState(cell));
+
+                    Console.ResetColor();
                 }
 
-                ret += @"|
-";
-
-                for (int x = 0; x < Array.Count; x++)
-                {
-                    ret += "--";
-                }
-
-                ret += @"-
-";
+                Console.WriteLine("");
 
             }
-
-            return ret;
 
         }
 
@@ -161,8 +161,7 @@ namespace ConsoleApp1
                 }
                 else if (nav.Key == ConsoleKey.Spacebar)
                 {
-                    AddShip(inpShip, Array, posX, posY);
-                    placeBool = false;
+                    if (AddShip(inpShip, Array, posX, posY)) placeBool = false;
                 }
             }
         }
@@ -172,12 +171,12 @@ namespace ConsoleApp1
             Array[inpX][inpY].Kill();
         }
 
-        public void AddShip (Ship inpShip, List<List<Cell>> inpField, int inpX, int inpY)
+        public bool AddShip (Ship inpShip, List<List<Cell>> inpField, int inpX, int inpY)
         {
             bool add = true;
-            for (int x = inpX; x <= inpShip.Width + inpX; x++)
+            for (int x = inpX - 1; x <= inpShip.Height + inpX + 1; x++)
             {
-                for (int y = inpY; y <= inpShip.Height + inpY; y++)
+                for (int y = inpY - 1; y <= inpShip.Width + inpY + 1; y++)
                 {
                     foreach (Cell smallCell in inpShip.Shape)
                     {
@@ -194,9 +193,9 @@ namespace ConsoleApp1
 
             if (add)
             {
-                for (int x = inpX; x <= inpShip.Width + inpX; x++)
+                for (int x = inpX; x <= inpShip.Height + inpX; x++)
                 {
-                    for (int y = inpY; y <= inpShip.Height + inpY; y++)
+                    for (int y = inpY; y <= inpShip.Width + inpY; y++)
                     {
                         foreach (Cell smallCell in inpShip.Shape)
                         {
@@ -207,7 +206,10 @@ namespace ConsoleApp1
                         }
                     }
                 }
-            }
+
+                return true;
+
+            } else return false;
         }
 
     }

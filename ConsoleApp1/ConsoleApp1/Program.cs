@@ -12,6 +12,9 @@ namespace ConsoleApp1
         {
             
             Ship shipA = new Ship("carrierII");
+            Ship shipB = new Ship("heavyCruiser");
+            Ship shipC = new Ship("hydro");
+            Ship shipD = new Ship("katamaran");
 
             ArrayHandler arrHand = new ArrayHandler();
 
@@ -28,9 +31,19 @@ namespace ConsoleApp1
             arrHand.KillCell(Field, 2, 7);
             arrHand.KillCell(Field, 3, 0);
             arrHand.KillCell(Field, 1, 8);
-            arrHand.KillCell(Field, 6, 9);
             */
+
             arrHand.RenderArray(Field, shipA);
+            arrHand.RenderArray(Field, shipB);
+            arrHand.RenderArray(Field, shipC);
+            arrHand.RenderArray(Field, shipD);
+
+            arrHand.KillCell(Field, 6, 2);
+            arrHand.KillCell(Field, 3, 1);
+            arrHand.KillCell(Field, 9, 9);
+
+
+            arrHand.RenderArray(Field);
 
         }
     }
