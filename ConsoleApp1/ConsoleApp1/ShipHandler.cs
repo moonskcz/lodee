@@ -11,7 +11,7 @@ namespace ConsoleApp1
 
         /* sub, destroyer, cruiser, battlehip, carrier, landBase, hydro, cruiserII, heavyCruiser, katamaran, lightBattleship, carrierII */
 
-        public List<Cell> CreateShipShape (Ship inpShip)
+        public void CreateShipShape (Ship inpShip)
         {
 
             List<Cell> retShip = new List<Cell>();
@@ -37,9 +37,20 @@ namespace ConsoleApp1
                     retShip.Add(new Cell(inpShip, 3, 0));
                     break;
                 case "carrier":
-
+                    retShip.Add(new Cell(inpShip, 0, 0));
+                    retShip.Add(new Cell(inpShip, 1, 0));
+                    retShip.Add(new Cell(inpShip, 2, 0));
+                    retShip.Add(new Cell(inpShip, 3, 0));
+                    retShip.Add(new Cell(inpShip, 4, 0));
+                    break;
                 case "landBase":
-
+                    retShip.Add(new Cell(inpShip, 0, 0));
+                    retShip.Add(new Cell(inpShip, 1, 0));
+                    retShip.Add(new Cell(inpShip, 2, 0));
+                    retShip.Add(new Cell(inpShip, 0, 1));
+                    retShip.Add(new Cell(inpShip, 1, 1));
+                    retShip.Add(new Cell(inpShip, 2, 1));
+                    break;
                 case "hydro":
 
                 case "cruiserII":
@@ -56,7 +67,7 @@ namespace ConsoleApp1
                     break;
             }
 
-            return retShip;
+            inpShip.Shape = retShip;
             
         }
 

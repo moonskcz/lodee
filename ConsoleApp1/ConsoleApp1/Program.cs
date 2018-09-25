@@ -11,7 +11,7 @@ namespace ConsoleApp1
         static void Main(string[] args)
         {
             
-            Ship shipA = new Ship();
+            Ship shipA = new Ship("landBase");
 
             ArrayHandler arrHand = new ArrayHandler();
 
@@ -30,7 +30,7 @@ namespace ConsoleApp1
             arrHand.KillCell(Field, 1, 8);
             arrHand.KillCell(Field, 6, 9);
 
-            Console.WriteLine(arrHand.RenderArray(Field));
+            arrHand.RenderArray(Field, shipA);
 
         }
     }

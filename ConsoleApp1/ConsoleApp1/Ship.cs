@@ -16,11 +16,14 @@ namespace ConsoleApp1
         public int X = 0;
         public int Y = 0;
 
-        List<List<int>> Shape;
+        public List<Cell> Shape = new List<Cell>();
 
-        public void SetShipShape (List<List<int>> shape)
+        ShipHandler SH = new ShipHandler();
+
+        public Ship (string inpType)
         {
-            this.Shape = shape;
+            Type = inpType;
+             SH.CreateShipShape(this);
         }
 
     }

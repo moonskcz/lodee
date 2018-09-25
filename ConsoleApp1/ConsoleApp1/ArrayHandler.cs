@@ -83,41 +83,81 @@ namespace ConsoleApp1
 
         }
 
-        public string RenderArray(List<List<Cell>> Array, Ship inpShip)
+        public void RenderArray(List<List<Cell>> Array, Ship inpShip)
         {
 
+            bool placeBool = true;
             string ret = "";
 
-            for (int x = 0; x < Array.Count; x++)
-            {
-                ret += "--";
-            }
+            int posX = 0;
+            int posY = 0;
 
-            ret += @"-
-";
 
-            foreach (List<Cell> LCell in Array)
+            while (placeBool)
             {
 
-                foreach (Cell cell in LCell)
+                ret = "";
+
+                
+                ConsoleKeyInfo nav = Console.ReadKey();
+
+                Console.Clear();
+
+                if (nav.Key == ConsoleKey.UpArrow)
                 {
-                    ret += "|" + GetCellState(cell);
+                    Console.WriteLine("up");
+                    if (posX > 0) posX--;
+                } else if (nav.Key == ConsoleKey.LeftArrow)
+                {
+                    Console.WriteLine("left");
+                    if (posY > 0) posY--;
+                } else if (nav.Key == ConsoleKey.RightArrow)
+                {
+                    Console.WriteLine("right");
+                    if (posY < Array.Count() - 1) posY++;
+                } else if (nav.Key == ConsoleKey.DownArrow)
+                {
+                    Console.WriteLine("down");
+                    if (posX < Array.Count() - 1) posX++;
                 }
 
-                ret += @"|
-";
+                Console.WriteLine($"{posX.ToString()}{posY.ToString()}");
 
-                for (int x = 0; x < Array.Count; x++)
+                int currX = 0;
+
+                foreach (List<Cell> LCell in Array)
                 {
-                    ret += "--";
+                    int currY = 0;
+
+                    foreach (Cell cell in LCell)
+                    {
+                        bool shipHere = false;
+
+                        foreach (Cell smallCell in inpShip.Shape)
+                        {
+
+                        }
+
+                        if ((posX == currX && posY == currY) || (shipHere))
+                        {
+                            Console.BackgroundColor = ConsoleColor.Green;
+                        }
+
+                        Console.Write("|" + GetCellState(cell));
+
+                        Console.ResetColor();
+
+                        currY++;
+                    }
+                    Console.WriteLine();
+
+                    currX++;
+
                 }
 
-                ret += @"-
-";
+                Console.WriteLine(ret);
 
             }
-
-            return ret;
 
         }
 
@@ -127,6 +167,11 @@ namespace ConsoleApp1
             Array[inpX][inpY].Kill();
 
         }
+
+        /*public List<List<Cell>> AddShip ()
+        {
+            return;
+        }*/
 
     }
 }
