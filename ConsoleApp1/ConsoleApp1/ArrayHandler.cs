@@ -162,56 +162,52 @@ namespace ConsoleApp1
                 else if (nav.Key == ConsoleKey.Spacebar)
                 {
                     AddShip(inpShip, Array, posX, posY);
+                    placeBool = false;
                 }
-
             }
-
         }
 
         public void KillCell (List<List<Cell>> Array, int inpX, int inpY)
         {
-
             Array[inpX][inpY].Kill();
-
         }
 
         public void AddShip (Ship inpShip, List<List<Cell>> inpField, int inpX, int inpY)
         {
-
-            for (int x = 0; x <= inpShip.Width; x++)
+            bool add = true;
+            for (int x = inpX; x <= inpShip.Width + inpX; x++)
             {
-
-                for (int y = 0; y <= inpShip.Height; y++)
+                for (int y = inpY; y <= inpShip.Height + inpY; y++)
                 {
                     foreach (Cell smallCell in inpShip.Shape)
                     {
                         if (smallCell.X + inpX == x && smallCell.Y + inpY == y)
                         {
-                            inpField[x + inpX][y + inpY] = smallCell;
-
-                            ProcessStartInfo psi = new ProcessStartInfo("cmd.exe")
+                            if (inpField[x][y].State == 2 || inpField[x][y].State == 3)
                             {
-                                RedirectStandardError = true,
-                                RedirectStandardInput = true,
-                                RedirectStandardOutput = true,
-                                UseShellExecute = false
-                            };
-
-                            Process p = Process.Start(psi);
-
-                            StreamWriter sw = p.StandardInput;
-                            StreamReader sr = p.StandardOutput;
-
-                            sw.WriteLine($"{x + inpX}{y + inpY}");
-                            //sr.Close();
-
-
+                                add = false;
+                            }
                         }
                     }
                 }
-
             }
 
+            if (add)
+            {
+                for (int x = inpX; x <= inpShip.Width + inpX; x++)
+                {
+                    for (int y = inpY; y <= inpShip.Height + inpY; y++)
+                    {
+                        foreach (Cell smallCell in inpShip.Shape)
+                        {
+                            if (smallCell.X + inpX == x && smallCell.Y + inpY == y)
+                            {
+                                inpField[x][y] = smallCell;
+                            }
+                        }
+                    }
+                }
+            }
         }
 
     }

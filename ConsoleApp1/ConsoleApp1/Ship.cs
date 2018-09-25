@@ -29,5 +29,14 @@ namespace ConsoleApp1
             SH.CreateShipShape(this);
         }
 
+        public void Hit ()
+        {
+            ShipLives--;
+
+            if (ShipLives <= 0)
+            {
+                SH.ShipDied();
+            }
+        }
     }
 }
