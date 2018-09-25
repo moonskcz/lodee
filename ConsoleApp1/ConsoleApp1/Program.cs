@@ -15,6 +15,8 @@ namespace ConsoleApp1
             Ship shipB = new Ship("heavyCruiser");
             Ship shipC = new Ship("hydro");
             Ship shipD = new Ship("katamaran");
+            Ship shipE = new Ship("carrier");
+
 
             ArrayHandler arrHand = new ArrayHandler();
 
@@ -37,6 +39,7 @@ namespace ConsoleApp1
             arrHand.RenderArray(Field, shipB);
             arrHand.RenderArray(Field, shipC);
             arrHand.RenderArray(Field, shipD);
+            arrHand.RenderArray(Field, shipE);
 
             arrHand.KillCell(Field, 6, 2);
             arrHand.KillCell(Field, 3, 1);

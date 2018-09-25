@@ -131,6 +131,22 @@ namespace ConsoleApp1
 
         }
 
+        public void ShipRotate(Ship ship)
+        {
+            //only works with katamaran and sticks
+            int tmpp = ship.Width;
+            ship.Width = ship.Height;
+            ship.Height = tmpp;
+
+            foreach (Cell cell in ship.Shape)
+            {
+                int tmp = cell.X;
+                cell.X = cell.Y;
+                cell.Y = tmp;
+
+            }
+
+        }
 
     }
 }

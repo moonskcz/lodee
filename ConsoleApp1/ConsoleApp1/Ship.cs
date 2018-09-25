@@ -21,7 +21,7 @@ namespace ConsoleApp1
 
         public List<Cell> Shape = new List<Cell>();
 
-        ShipHandler SH = new ShipHandler();
+        public ShipHandler SH = new ShipHandler();
 
         public Ship (string inpType)
         {

@@ -163,6 +163,10 @@ namespace ConsoleApp1
                 {
                     if (AddShip(inpShip, Array, posX, posY)) placeBool = false;
                 }
+                else if (nav.Key == ConsoleKey.R)
+                {
+                    inpShip.SH.ShipRotate(inpShip);
+                }
             }
         }
 
