@@ -19,6 +19,8 @@ namespace ConsoleApp1
         public int Width = 1;
         public int Height = 1;
 
+        public int Rotation = 0;
+
         public List<Cell> Shape = new List<Cell>();
 
         public ShipHandler SH = new ShipHandler();

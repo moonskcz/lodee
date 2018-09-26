@@ -49,7 +49,7 @@ namespace ConsoleApp1
                     retShip.Add(new Cell(inpShip, 0, 1));
                     retShip.Add(new Cell(inpShip, 0, 2));
                     retShip.Add(new Cell(inpShip, 0, 3));
-                    retShip.Add(new Cell(inpShip, 0, 4));
+                    retShip.Add(new Cell(inpShip, 0, 5));
                     inpShip.Height = 1;
                     inpShip.Width = 5;
                     break;
@@ -134,16 +134,92 @@ namespace ConsoleApp1
         public void ShipRotate(Ship ship)
         {
             //only works with katamaran, cross and sticks
+            
+
+            foreach (Cell cell in ship.Shape)
+            {
+                int wMiddle;
+                int hMiddle;
+
+                if (ship.Width % 2 == 1)
+                {
+                    wMiddle = ship.Width / 2;
+                    wMiddle++;
+                } else
+                {
+                    wMiddle = ship.Width / 2;
+                }
+
+                if (ship.Height % 2 == 1)
+                {
+                    hMiddle = ship.Width / 2;
+                    hMiddle++;
+                } else
+                {
+                    hMiddle = ship.Width / 2;
+                }
+
+                int tmpX = cell.X;
+                int tmpY = cell.Y;
+
+                if (tmpY < hMiddle)
+                {
+                    cell.Y = hMiddle -tmpX;
+                } else if (tmpY > hMiddle)
+                {
+                    cell.Y = tmpX + hMiddle;
+                }
+
+                if (tmpX > wMiddle)
+                {
+                    cell.X = wMiddle -tmpY;
+                } else if (tmpX < wMiddle)
+                {
+                    cell.X = tmpY + wMiddle;
+                }
+                /*
+                int finX = ship.Height -1 -tmpX;
+                int finY = ship.Width -1 -tmpY;
+
+
+                cell.X = finX;
+                
+
+                cell.Y = finY;
+
+                
+                /*
+                cell.X = ship.Height - cell.Y - 1;
+                cell.Y = ship.Width - tmpX - 1;
+                /*
+                if ((ship.Rotation + 1) % 2 == 1)
+                {
+                    cell.Y = tmpX;
+                    cell.X = ship.Height - 1 - tmpY;
+                } else
+                {
+                    cell.X = tmpY;
+                    cell.Y = ship.Width - 1 - tmpX;
+                }
+                /*
+                float newX = cell.X / ship.Height;
+
+                if (newX > 0.5)
+                {
+
+                }*/
+
+            }
+
             int tmpp = ship.Width;
             ship.Width = ship.Height;
             ship.Height = tmpp;
 
-            foreach (Cell cell in ship.Shape)
-            {
-                int tmp = cell.X;
-                cell.X = cell.Y;
-                cell.Y = tmp;
+            ship.Rotation++;
 
+            if (ship.Rotation == 3)
+            {
+                ship.Rotation = 0;
             }
 
         }
