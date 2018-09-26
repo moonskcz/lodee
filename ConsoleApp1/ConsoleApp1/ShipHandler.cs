@@ -133,7 +133,7 @@ namespace ConsoleApp1
 
         public void ShipRotate(Ship ship)
         {
-            //only works with katamaran and sticks
+            //only works with katamaran, cross and sticks
             int tmpp = ship.Width;
             ship.Width = ship.Height;
             ship.Height = tmpp;
