@@ -162,10 +162,10 @@ namespace ConsoleApp1
                 int tmpX = cell.X;
                 int tmpY = cell.Y;
 
-                if (tmpY < hMiddle)
+                if (tmpY > hMiddle)
                 {
                     cell.Y = hMiddle -tmpX;
-                } else if (tmpY > hMiddle)
+                } else if (tmpY < hMiddle)
                 {
                     cell.Y = tmpX + hMiddle;
                 }
