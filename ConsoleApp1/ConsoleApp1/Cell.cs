@@ -37,8 +37,7 @@ namespace ConsoleApp1
             } else if (ship != null && State == 2)
             {
                 State = 3;
-                ship.Hit();
-                return true;
+                return ship.Hit();
             }
 
             return false;

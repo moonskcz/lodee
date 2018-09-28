@@ -182,7 +182,7 @@ namespace ConsoleApp1
                 }
                 else if (nav.Key == ConsoleKey.R)
                 {
-                    inpShip.SH.ShipRotate(inpShip);
+                    inpShip.SH.GetRotation(inpShip);
                 }
             }
         }

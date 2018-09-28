@@ -44,8 +44,6 @@ namespace ConsoleApp1
 
             ShipLives = ShipLives / 2;
 
-            Console.WriteLine(ShipLives.ToString());
-            Console.ReadLine();
         }
 
         public bool Hit ()
