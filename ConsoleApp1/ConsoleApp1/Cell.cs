@@ -27,17 +27,21 @@ namespace ConsoleApp1
             if (inpShip != null) State = 2;
         }
         
-        public void Kill ()
+        public bool Kill ()
         {
 
             if (ship == null && State == 0)
             {
                 State = 1;
+                return false;
             } else if (ship != null && State == 2)
             {
                 State = 3;
                 ship.Hit();
+                return true;
             }
+
+            return false;
 
         }
 

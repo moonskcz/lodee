@@ -25,20 +25,39 @@ namespace ConsoleApp1
 
         public ShipHandler SH = new ShipHandler();
 
-        public Ship (string inpType)
+        public TeamHandler TH = null;
+
+        public Ship (string inpType, TeamHandler th)
         {
             Type = inpType;
+
+            TH = th;
+
+            TH.AddShip(this);
+
             SH.CreateShipShape(this);
+
+            foreach (Cell el in Shape)
+            {
+                ShipLives++;
+            }
+
+            ShipLives = ShipLives / 2;
+
+            Console.WriteLine(ShipLives.ToString());
+            Console.ReadLine();
         }
 
-        public void Hit ()
+        public bool Hit ()
         {
             ShipLives--;
 
             if (ShipLives <= 0)
             {
-                SH.ShipDied();
+                TH.ShipDied(this);
             }
+
+            return true;
         }
     }
 }

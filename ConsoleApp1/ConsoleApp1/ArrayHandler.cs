@@ -48,6 +48,25 @@ namespace ConsoleApp1
             }
         }
 
+        public string GetCellState(Cell cell, bool inpBool)
+        {
+
+            switch (cell.State)
+            {
+                case 0:
+                    return @" ";
+                case 1:
+                    return @"X";
+                case 2:
+                    return @" ";
+                case 3:
+                    return @"H";
+                default:
+                    return @" ";
+            }
+        }
+
+
         public void RenderArray(List<List<Cell>> Array)
         {
 
@@ -99,8 +118,6 @@ namespace ConsoleApp1
             {
 
                 Console.Clear();
-
-                
 
                 int currX = 0;
 
@@ -170,9 +187,119 @@ namespace ConsoleApp1
             }
         }
 
-        public void KillCell (List<List<Cell>> Array, int inpX, int inpY)
+
+        public void RenderArray(List<List<Cell>> Array, TeamHandler th)
         {
-            Array[inpX][inpY].Kill();
+
+            bool turnBool = true;
+
+            int posX = 0;
+            int posY = 0;
+
+
+            while (turnBool)
+            {
+
+                Console.Clear();
+
+                int currX = 0;
+
+                foreach (List<Cell> LCell in Array)
+                {
+                    int currY = 0;
+
+                    foreach (Cell cell in LCell)
+                    {
+
+                        if (GetCellState(cell) == "S")
+                        {
+                            Console.BackgroundColor = ConsoleColor.Blue;
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                        }
+                        else if (GetCellState(cell) == "H")
+                        {
+                            Console.BackgroundColor = ConsoleColor.Red;
+                            Console.ForegroundColor = ConsoleColor.Red;
+                        }
+                        else if (GetCellState(cell) == " ")
+                        {
+                            Console.BackgroundColor = ConsoleColor.Blue;
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                        }
+                        else if (GetCellState(cell) == "X")
+                        {
+                            Console.BackgroundColor = ConsoleColor.Yellow;
+                            Console.ForegroundColor = ConsoleColor.Yellow;
+                        }
+
+                        bool cursorHere = false;
+                        
+                        if ((posX == currX) && (posY == currY)) cursorHere = true;
+
+                        if (cursorHere)
+                        {
+                            Console.BackgroundColor = ConsoleColor.Green;
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                        }
+
+                        Console.Write("|" + GetCellState(cell, true));
+
+                        Console.ResetColor();
+
+                        currY++;
+                    }
+                    Console.WriteLine();
+
+                    currX++;
+
+                }
+
+                Console.WriteLine($"{posX.ToString()}{posY.ToString()}");
+
+                ConsoleKeyInfo nav = Console.ReadKey();
+
+                if (nav.Key == ConsoleKey.UpArrow)
+                {
+                    Console.WriteLine("up");
+                    if (posX > 0) posX--;
+                }
+                else if (nav.Key == ConsoleKey.LeftArrow)
+                {
+                    Console.WriteLine("left");
+                    if (posY > 0) posY--;
+                }
+                else if (nav.Key == ConsoleKey.RightArrow)
+                {
+                    Console.WriteLine("right");
+                    if (posY < Array.Count() - 1) posY++;
+                }
+                else if (nav.Key == ConsoleKey.DownArrow)
+                {
+                    Console.WriteLine("down");
+                    if (posX < Array.Count() - 1) posX++;
+                }
+                else if (nav.Key == ConsoleKey.Spacebar)
+                {
+                    if (!KillCell(Array, posX, posY))
+                    {
+                        turnBool = false;
+                        Console.WriteLine("Miss");
+                        Console.WriteLine("Opponents turn");
+                        Console.ReadLine();
+                    } else
+                    {
+                        Console.WriteLine("Hit");
+                        Console.WriteLine("Shoot again");
+                        Console.ReadLine();
+                    }
+                }
+            }
+        }
+
+
+        public bool KillCell (List<List<Cell>> Array, int inpX, int inpY)
+        {
+            return Array[inpX][inpY].Kill();
         }
 
         public bool AddShip (Ship inpShip, List<List<Cell>> inpField, int inpX, int inpY)
@@ -214,6 +341,15 @@ namespace ConsoleApp1
                 return true;
 
             } else return false;
+        }
+
+        public void Turns (List<List<Cell>> Array1, TeamHandler TH1, List<List<Cell>> Array2, TeamHandler TH2)
+        {
+            while (true)
+            {
+                RenderArray(Array1, TH1);
+                RenderArray(Array2, TH2);
+            }
         }
 
     }

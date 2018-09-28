@@ -126,15 +126,8 @@ namespace ConsoleApp1
             
         }
 
-        public void ShipDied ()
-        {
-
-        }
-
         public void ShipRotate(Ship ship)
-        {
-            //only works with katamaran, cross and sticks
-            
+        {   
 
             foreach (Cell cell in ship.Shape)
             {
@@ -177,6 +170,7 @@ namespace ConsoleApp1
                 {
                     cell.X = tmpY + wMiddle;
                 }
+
                 /*
                 int finX = ship.Height -1 -tmpX;
                 int finY = ship.Width -1 -tmpY;
@@ -221,6 +215,11 @@ namespace ConsoleApp1
             {
                 ship.Rotation = 0;
             }
+
+        }
+
+        public void ShipDied (Ship ship)
+        {
 
         }
 
