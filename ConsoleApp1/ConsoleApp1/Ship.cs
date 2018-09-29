@@ -53,6 +53,8 @@ namespace ConsoleApp1
             if (ShipLives <= 0)
             {
                 TH.ShipDied(this);
+                Console.WriteLine($"Ship {Type} has been sunk.");
+                Console.ReadKey();
             }
 
             return true;
