@@ -16,7 +16,7 @@ namespace ConsoleApp1
             TeamHandler TH1 = new TeamHandler(1);
             TeamHandler TH2 = new TeamHandler(2);
 
-            Ship shipAA = new Ship("katamaran", TH1);
+            Ship shipAA = new Ship("carrierII", TH1);
 
             Ship shipBA = new Ship("sub", TH2);
 
