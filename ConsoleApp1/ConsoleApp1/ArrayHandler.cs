@@ -66,8 +66,7 @@ namespace ConsoleApp1
             }
         }
 
-
-        public void RenderArray(List<List<Cell>> Array)
+     /*   public void RenderArray(List<List<Cell>> Array)
         {
 
             Console.Clear();
@@ -104,7 +103,7 @@ namespace ConsoleApp1
             }
 
         }
-
+        */
         public void RenderArray(List<List<Cell>> Array, Ship inpShip)
         {
 
@@ -186,7 +185,6 @@ namespace ConsoleApp1
                 }
             }
         }
-
 
         public void RenderArray(List<List<Cell>> Array, TeamHandler th)
         {
@@ -296,7 +294,6 @@ namespace ConsoleApp1
             }
         }
 
-
         public bool KillCell (List<List<Cell>> Array, int inpX, int inpY)
         {
             return Array[inpX][inpY].Kill();
@@ -313,10 +310,35 @@ namespace ConsoleApp1
                     {
                         if (smallCell.X + inpX == x && smallCell.Y + inpY == y)
                         {
-                            if (inpField[x][y].State == 2 || inpField[x][y].State == 3)
+                            if (inpField[x][y].State == 2)
                             {
                                 add = false;
                             }
+                            try {
+                                if (inpField[x][y - 1].State == 2)
+                                {
+                                    add = false;
+                                }
+                            } catch (ArgumentException) { }
+                            try {
+                                if (inpField[x][y + 1].State == 2)
+                                {
+                                    add = false;
+                                }
+                            } catch (ArgumentException) { }
+                            try {
+                                if (inpField[x - 1][y].State == 2)
+                                {
+                                    add = false;
+                                }
+                            } catch (ArgumentException) { }
+                            try {
+                                if (inpField[x + 1][y].State == 2)
+                                {
+                                    add = false;
+                                }
+                            } catch (ArgumentException) { }
+                            
                         }
                     }
                 }
@@ -349,6 +371,106 @@ namespace ConsoleApp1
             {
                 RenderArray(Array1, TH1);
                 RenderArray(Array2, TH2);
+            }
+        }
+
+        public void ShipConfigMenu (TeamHandler TH1, TeamHandler TH2, List<List<Cell>> Field1, List<List<Cell>> Field2)
+        {
+            ShipHandler shHand = new ShipHandler();
+
+            List<string> chosenShips = new List<string>();
+
+            bool turns = true;
+            int curr = 0;
+
+            while (turns)
+            {
+
+                Console.Clear();
+
+                foreach (string val in shHand.AllShipTypes)
+                {
+
+                    if (chosenShips.Contains(val))
+                    {
+                        Console.BackgroundColor = ConsoleColor.White;
+                        Console.ForegroundColor = ConsoleColor.Black;
+                    }
+                    if (shHand.AllShipTypes.IndexOf(val) == curr)
+                    {
+                        Console.BackgroundColor = ConsoleColor.Green;
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                    }
+
+                    Console.WriteLine(val);
+
+                    Console.ResetColor();
+
+                }
+
+                if (curr == shHand.AllShipTypes.Count)
+                {
+                    Console.BackgroundColor = ConsoleColor.Blue;
+                    Console.ForegroundColor = ConsoleColor.Green;
+                }
+
+                Console.WriteLine("Continue");
+
+                Console.ResetColor();
+
+                ConsoleKeyInfo nav = Console.ReadKey();
+
+                if (nav.Key == ConsoleKey.DownArrow)
+                {
+                    Console.WriteLine("up");
+                    if (curr < shHand.AllShipTypes.Count)
+                    {
+                        curr++;
+                    } else
+                    {
+                        curr = 0;
+                    }
+                } else if (nav.Key == ConsoleKey.UpArrow)
+                {
+                    Console.WriteLine("down");
+                    if (curr > 0)
+                    {
+                        curr--;
+                    }
+                    else
+                    {
+                        curr = shHand.AllShipTypes.Count;
+                    }
+                } else if (nav.Key == ConsoleKey.Spacebar)
+                {
+                    if (curr == shHand.AllShipTypes.Count)
+                    {
+                        turns = false;
+                        foreach (string el in chosenShips)
+                        {
+                            new Ship(el, TH1);
+                            new Ship(el, TH2);
+                        }
+                        foreach (Ship ship in TH1.Ships)
+                        {
+                            RenderArray(Field1, ship);
+                        }
+                        foreach (Ship ship in TH2.Ships)
+                        {
+                            RenderArray(Field2, ship);
+                        }
+                    } else
+                    {
+                        if (!chosenShips.Contains(shHand.AllShipTypes[curr]))
+                        {
+                            chosenShips.Add(shHand.AllShipTypes[curr]);
+                        } else
+                        {
+                            chosenShips.Remove(shHand.AllShipTypes[curr]);
+                        }
+                    }
+                }
+
             }
         }
 

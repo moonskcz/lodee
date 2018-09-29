@@ -54,7 +54,6 @@ namespace ConsoleApp1
             {
                 TH.ShipDied(this);
                 Console.WriteLine($"Ship {Type} has been sunk.");
-                Console.ReadKey();
             }
 
             return true;

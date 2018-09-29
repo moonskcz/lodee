@@ -10,6 +10,7 @@ namespace ConsoleApp1
     {
 
         /* sub, destroyer, cruiser, battlehip, carrier, landBase, hydro, cruiserII, heavyCruiser, katamaran, lightBattleship, carrierII */
+        public List<string> AllShipTypes = new List<string> { "sub", "destroyer",  "cruiser", "battlehip", "carrier", "landBase", "hydro", "cruiserII", "heavyCruiser", "katamaran", "lightBattleship", "carrierII" };
 
         public void CreateShipShape (Ship inpShip)
         {
@@ -397,13 +398,7 @@ namespace ConsoleApp1
                             ship.Height = 3;
                             ship.Width = 2;
                             break;
-                    }/*
-                    retShip.Add(new Cell(inpShip, 0, 1));
-                    retShip.Add(new Cell(inpShip, 1, 0));
-                    retShip.Add(new Cell(inpShip, 1, 2));
-                    retShip.Add(new Cell(inpShip, 1, 1));
-                    ship.Height = 2;
-                    ship.Width = 3;*/
+                    }
                     break;
                 case "heavyCruiser":
                     
@@ -462,16 +457,7 @@ namespace ConsoleApp1
                             ship.Height = 3;
                             ship.Width = 3;
                             break;
-                    }/*
-                    retShip.Add(new Cell(inpShip, 0, 0));
-                    retShip.Add(new Cell(inpShip, 0, 2));
-                    retShip.Add(new Cell(inpShip, 1, 0));
-                    retShip.Add(new Cell(inpShip, 1, 1));
-                    retShip.Add(new Cell(inpShip, 1, 2));
-                    retShip.Add(new Cell(inpShip, 2, 0));
-                    retShip.Add(new Cell(inpShip, 2, 2));
-                    ship.Height = 3;
-                    ship.Width = 3;*/
+                    }
                     break;
                 case "lightBattleship":
                     switch (ship.Rotation)
@@ -680,11 +666,6 @@ namespace ConsoleApp1
             {
                 ship.Rotation = 0;
             }
-
-        }
-
-        public void ShipDied (Ship ship)
-        {
 
         }
 
