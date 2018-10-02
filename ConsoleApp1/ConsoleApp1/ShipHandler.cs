@@ -10,7 +10,7 @@ namespace ConsoleApp1
     {
 
         /* sub, destroyer, cruiser, battlehip, carrier, landBase, hydro, cruiserII, heavyCruiser, katamaran, lightBattleship, carrierII */
-        public List<string> AllShipTypes = new List<string> { "sub", "destroyer",  "cruiser", "battlehip", "carrier", "landBase", "hydro", "cruiserII", "heavyCruiser", "katamaran", "lightBattleship", "carrierII" };
+        public List<string> AllShipTypes = new List<string> { "sub", "destroyer",  "cruiser", "battlehip", "carrier", "landBase", "hydro", "cruiserII", "heavyCruiser", "katamaran", "lightBattleship", "carrierII", "HEIL" };
 
         public void CreateShipShape (Ship inpShip)
         {
@@ -109,6 +109,17 @@ namespace ConsoleApp1
                 case "carrierII":
                     retShip.Add(new Cell(inpShip, 0, 3));
                     retShip.Add(new Cell(inpShip, 0, 4));
+                    retShip.Add(new Cell(inpShip, 1, 0));
+                    retShip.Add(new Cell(inpShip, 1, 1));
+                    retShip.Add(new Cell(inpShip, 1, 2));
+                    retShip.Add(new Cell(inpShip, 1, 3));
+                    retShip.Add(new Cell(inpShip, 1, 4));
+                    inpShip.Height = 2;
+                    inpShip.Width = 5;
+                    break;
+                case "HEIL":
+                    retShip.Add(new Cell(inpShip, 0, 1));
+                    retShip.Add(new Cell(inpShip, 0, 3));
                     retShip.Add(new Cell(inpShip, 1, 0));
                     retShip.Add(new Cell(inpShip, 1, 1));
                     retShip.Add(new Cell(inpShip, 1, 2));
@@ -539,6 +550,66 @@ namespace ConsoleApp1
                             ship.Width = 2;
                             break;
                     }
+                    break;
+                case "HEIL":
+                    switch (ship.Rotation)
+                    {
+                        case 0:
+                            retShip.Add(new Cell(ship, 0, 1));
+                            retShip.Add(new Cell(ship, 0, 3));
+                            retShip.Add(new Cell(ship, 1, 0));
+                            retShip.Add(new Cell(ship, 1, 1));
+                            retShip.Add(new Cell(ship, 1, 2));
+                            retShip.Add(new Cell(ship, 1, 3));
+                            retShip.Add(new Cell(ship, 1, 4));
+                            ship.Height = 2;
+                            ship.Width = 5;
+                            break;
+                        case 1:
+                            retShip.Add(new Cell(ship, 0, 0));
+                            retShip.Add(new Cell(ship, 1, 0));
+                            retShip.Add(new Cell(ship, 1, 1));
+                            retShip.Add(new Cell(ship, 2, 0));
+                            retShip.Add(new Cell(ship, 3, 0));
+                            retShip.Add(new Cell(ship, 3, 1));
+                            retShip.Add(new Cell(ship, 4, 0));
+                            ship.Height = 5;
+                            ship.Width = 2;
+                            break;
+                        case 2:
+                            retShip.Add(new Cell(ship, 0, 0));
+                            retShip.Add(new Cell(ship, 0, 1));
+                            retShip.Add(new Cell(ship, 0, 2));
+                            retShip.Add(new Cell(ship, 0, 3));
+                            retShip.Add(new Cell(ship, 0, 4));
+                            retShip.Add(new Cell(ship, 1, 1));
+                            retShip.Add(new Cell(ship, 1, 3));
+                            ship.Height = 2;
+                            ship.Width = 5;
+                            break;
+                        case 3:
+                            retShip.Add(new Cell(ship, 0, 1));
+                            retShip.Add(new Cell(ship, 1, 0));
+                            retShip.Add(new Cell(ship, 1, 1));
+                            retShip.Add(new Cell(ship, 2, 1));
+                            retShip.Add(new Cell(ship, 3, 1));
+                            retShip.Add(new Cell(ship, 3, 0));
+                            retShip.Add(new Cell(ship, 4, 1));
+                            ship.Height = 5;
+                            ship.Width = 2;
+                            break;
+                    }
+                    /* retShip.Add(new Cell(inpShip, 0, 1));
+                        retShip.Add(new Cell(inpShip, 0, 3));
+                        retShip.Add(new Cell(inpShip, 1, 0));
+                        retShip.Add(new Cell(inpShip, 1, 1));
+                        retShip.Add(new Cell(inpShip, 1, 2));
+                        retShip.Add(new Cell(inpShip, 1, 3));
+                        retShip.Add(new Cell(inpShip, 1, 4));
+                        inpShip.Height = 2;
+                        inpShip.Width = 5;
+                     * 
+                    */
                     break;
             }
 

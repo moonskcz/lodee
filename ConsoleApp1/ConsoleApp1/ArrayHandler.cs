@@ -365,16 +365,70 @@ namespace ConsoleApp1
             } else return false;
         }
 
-        public void Turns (List<List<Cell>> Array1, TeamHandler TH1, List<List<Cell>> Array2, TeamHandler TH2)
+        public void Turns (List<List<Cell>> Array1, TeamHandler TH1, List<List<Cell>> Array2, TeamHandler TH2, List<List<Cell>> Array3, TeamHandler TH3)
         {
             while (true)
             {
-                RenderArray(Array1, TH1);
-                RenderArray(Array2, TH2);
+
+                Console.Clear();
+                Console.WriteLine("Choose an enemy to shoot at. Either 2 or 3");
+
+                ConsoleKeyInfo nav = Console.ReadKey();
+
+                if (nav.Key == ConsoleKey.D2)
+                {
+                    RenderArray(Array2, TH2);
+                }
+                else if (nav.Key == ConsoleKey.D3)
+                {
+                    RenderArray(Array3, TH3);
+                }
+                else
+                {
+                    RenderArray(Array2, TH2);
+                }
+
+                Console.Clear();
+                Console.WriteLine("Choose an enemy to shoot at. Either 1 or 3");
+
+                ConsoleKeyInfo nav1 = Console.ReadKey();
+
+                if (nav1.Key == ConsoleKey.D1)
+                {
+                    RenderArray(Array1, TH1);
+                }
+                else if (nav1.Key == ConsoleKey.D3)
+                {
+                    RenderArray(Array3, TH3);
+                }
+                else
+                {
+                    RenderArray(Array1, TH1);
+                }
+
+
+                Console.Clear();
+                Console.WriteLine("Choose an enemy to shoot at. Either 1 or 2");
+
+                ConsoleKeyInfo nav2 = Console.ReadKey();
+
+                if (nav2.Key == ConsoleKey.D2)
+                {
+                    RenderArray(Array2, TH2);
+                }
+                else if (nav2.Key == ConsoleKey.D1)
+                {
+                    RenderArray(Array1, TH1);
+                }
+                else
+                {
+                    RenderArray(Array1, TH1);
+                }
+                //RenderArray(Array1, TH1);
             }
         }
 
-        public void ShipConfigMenu (TeamHandler TH1, TeamHandler TH2, List<List<Cell>> Field1, List<List<Cell>> Field2)
+        public void ShipConfigMenu (TeamHandler TH1, TeamHandler TH2, TeamHandler TH3, List<List<Cell>> Field1, List<List<Cell>> Field2, List<List<Cell>> Field3)
         {
             ShipHandler shHand = new ShipHandler();
 
@@ -450,6 +504,7 @@ namespace ConsoleApp1
                         {
                             new Ship(el, TH1);
                             new Ship(el, TH2);
+                            new Ship(el, TH3);
                         }
                         foreach (Ship ship in TH1.Ships)
                         {
@@ -458,6 +513,10 @@ namespace ConsoleApp1
                         foreach (Ship ship in TH2.Ships)
                         {
                             RenderArray(Field2, ship);
+                        }
+                        foreach (Ship ship in TH3.Ships)
+                        {
+                            RenderArray(Field3, ship);
                         }
                     } else
                     {
