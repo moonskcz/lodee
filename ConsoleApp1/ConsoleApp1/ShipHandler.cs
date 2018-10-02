@@ -126,7 +126,6 @@ namespace ConsoleApp1
             inpShip.Shape = retShip;
             
         }
-
         public void GetRotation (Ship ship)
         {
 
@@ -548,126 +547,6 @@ namespace ConsoleApp1
             ship.Shape = retShip;
         }
 
-        public void ShipRotate(Ship ship)
-        {
-
-            int tmpp = ship.Width;
-            ship.Width = ship.Height;
-            ship.Height = tmpp;
-
-            foreach (Cell cell in ship.Shape)
-            {
-
-                int wMiddle = (int)Math.Ceiling(ship.Width / 2.0);
-                int hMiddle = (int)Math.Ceiling(ship.Height / 2.0);
-
-                Console.WriteLine("");
-                Console.WriteLine(wMiddle.ToString());
-                Console.WriteLine(hMiddle.ToString());
-
-                /*
-                if (ship.Width % 2 != 1)
-                {
-                    Console.WriteLine($"{(ship.Width / 2).ToString()} Modulo");
-                    wMiddle = ship.Width / 2;
-                    wMiddle++;
-                } else
-                {
-                    wMiddle = ship.Width / 2;
-                    Console.WriteLine($"{(ship.Width / 2).ToString()}");
-
-                }
-
-                if (ship.Height % 2 != 1)
-                {
-                    Console.WriteLine($"{(ship.Height / 2).ToString()} Modulo");
-
-                    hMiddle = ship.Width / 2;
-                    hMiddle++;
-                } else
-                {
-                    Console.WriteLine($"{(ship.Height / 2).ToString()}");
-
-                    hMiddle = ship.Width / 2;
-                }
-                */
-                int tmpX = cell.X;
-                int tmpY = cell.Y;
-
-                Console.WriteLine(tmpX);
-                Console.WriteLine(tmpY);
-
-
-                if (tmpY < wMiddle)
-                {
-                    cell.Y = wMiddle -tmpX;
-                } else if (tmpY > wMiddle)
-                {
-                    cell.Y = tmpX + wMiddle;
-                } else
-                {
-                    cell.Y = wMiddle;
-                }
-
-                if (tmpX < hMiddle)
-                {
-                    cell.X = hMiddle -tmpY;
-                } else if (tmpX > hMiddle)
-                {
-                    cell.X = tmpY + hMiddle;
-                } else
-                {
-                    cell.X = hMiddle;
-                }
-
-                //Console.WriteLine($"{wMiddle.ToString()} {hMiddle.ToString()} {ship.Height} {ship.Width}");
-
-                /*
-                int finX = ship.Height -1 -tmpX;
-                int finY = ship.Width -1 -tmpY;
-
-
-                cell.X = finX;
-                
-
-                cell.Y = finY;
-
-                
-                /*
-                cell.X = ship.Height - cell.Y - 1;
-                cell.Y = ship.Width - tmpX - 1;
-                /*
-                if ((ship.Rotation + 1) % 2 == 1)
-                {
-                    cell.Y = tmpX;
-                    cell.X = ship.Height - 1 - tmpY;
-                } else
-                {
-                    cell.X = tmpY;
-                    cell.Y = ship.Width - 1 - tmpX;
-                }
-                /*
-                float newX = cell.X / ship.Height;
-
-                if (newX > 0.5)
-                {
-
-                }*/
-
-                Console.ReadLine();
-
-            }
-
-            
-
-            ship.Rotation++;
-
-            if (ship.Rotation == 3)
-            {
-                ship.Rotation = 0;
-            }
-
-        }
 
     }
 }
