@@ -9,6 +9,9 @@ namespace ConsoleApp1
     class Cell
     {
 
+        private bool yes = true;
+
+
         public int X;
         public int Y;
 
